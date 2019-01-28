@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("v1/")
 @EnableAutoConfiguration
 @ComponentScan(basePackages = { "com.training.rest.person" })
-public class PersonController implements RestService<Person> {
+public class PersonController implements RestService<Person, Integer> {
 
 	@Autowired
 	private PersonService service;
