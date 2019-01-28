@@ -20,9 +20,8 @@ public class PersonController {
 	private PersonService service;
 
 	@RequestMapping(method = RequestMethod.GET, value = "person/{id}")
-	public Person doPost(@PathVariable("id") Integer id) {
-		// TODO: Implement here
-		return null;
+	public Person doGet(@PathVariable("id") Integer id) {
+		return service.retrievePersonByID(id);
 	}
 
 	@RequestMapping(value = "person", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,6 +29,14 @@ public class PersonController {
 		return service.savePerson(person);
 	}
 
-	// TODO: Implement put and delete
+	@RequestMapping(method = RequestMethod.PUT, value = "person/{id}")
+	public Person doPut(@PathVariable("id") Integer id, @RequestBody Person person) {
+		return service.savePerson(id, person);
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "person/{id}")
+	public Integer doDelete(@PathVariable("id") Integer id) {
+		return service.deletePerson(id);
+	}
 
 }
