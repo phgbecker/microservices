@@ -1,6 +1,8 @@
-package com.training.rest.person;
+package com.training.rest.controller;
 
 import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -15,14 +17,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.training.rest.entity.Person;
+import com.training.rest.service.IService;
+
 @RestController
 @RequestMapping("v1/")
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "com.training.rest.person" })
-public class PersonController implements RestService<Person, Integer> {
+@ComponentScan(basePackages = { "com.training.rest" })
+public class PersonController implements IController<Person, Integer> {
 
 	@Autowired
-	private PersonService service;
+	private IService<Person, Integer> service;
 
 	@Override
 	@GetMapping(value = "person", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -37,14 +42,14 @@ public class PersonController implements RestService<Person, Integer> {
 	}
 
 	@Override
-	@PostMapping(value = "person", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Integer doPost(@RequestBody Person person) {
+	@PostMapping(value = "person", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Integer doPost(@Valid @RequestBody Person person) {
 		return service.save(person);
 	}
 
 	@Override
-	@PutMapping(value = "person/{id}")
-	public Person doPut(@PathVariable("id") Integer id, @RequestBody Person person) {
+	@PutMapping(value = "person/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Person doPut(@PathVariable("id") Integer id, @Valid @RequestBody Person person) {
 		return service.save(id, person);
 	}
 

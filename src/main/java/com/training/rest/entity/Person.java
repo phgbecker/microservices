@@ -1,10 +1,15 @@
-package com.training.rest.person;
+package com.training.rest.entity;
+
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
+	@NotNull
 	private String name;
+
+	@NotNull
 	private Integer age;
 
 	public Person() {

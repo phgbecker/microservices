@@ -13,9 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.training.rest.client.RESTHelper;
-import com.training.rest.person.Person;
-import com.training.rest.person.PersonController;
-import com.training.rest.person.PersonService;
+import com.training.rest.controller.PersonController;
+import com.training.rest.entity.Person;
+import com.training.rest.service.PersonServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { PersonController.class }, webEnvironment = WebEnvironment.DEFINED_PORT)
@@ -25,7 +25,7 @@ public class RestTestingApplicationTests {
 
 	@Before
 	public void prepareData() {
-		PersonService.cleanRepository();
+		PersonServiceImpl.cleanRepository();
 		// adding two persons
 		restHelper.postCall("Maria", 18);
 		restHelper.postCall("Jose", 21);

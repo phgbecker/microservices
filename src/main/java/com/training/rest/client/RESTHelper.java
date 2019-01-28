@@ -6,7 +6,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.training.rest.person.Person;
+import com.training.rest.entity.Person;
 
 /**
  * Classe para ajuda a consumir serviços REST
